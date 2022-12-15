@@ -27,20 +27,19 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="bUe-5J-05b"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Metric">
-                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="filled" title="Metric"/>
+                                <connections>
+                                    <action selector="bmiUnit_toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FbL-sq-2yy"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-MU-7la">
+                            <button opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-MU-7la">
                                 <rect key="frame" x="205" y="125" width="85" height="35"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Imperial">
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="filled" title="Imperial" cornerStyle="large"/>
+                                <connections>
+                                    <action selector="bmiUnit_toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Njw-gR-OZX"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn6-HF-Hme">
                                 <rect key="frame" x="42" y="191" width="50" height="22"/>
@@ -107,6 +106,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Submit">
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="submit_pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XD4-Yh-cJ2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQo-v0-gaK">
                                 <rect key="frame" x="20" y="558.33333333333337" width="353" height="34.333333333333371"/>
@@ -115,6 +117,9 @@
                                 <buttonConfiguration key="configuration" style="tinted" title="Reset">
                                     <color key="baseBackgroundColor" systemColor="systemGray5Color"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetBMIForm_pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LM8-rD-R0M"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Result:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnj-FE-7t8">
                                 <rect key="frame" x="20" y="612.66666666666663" width="353" height="26.333333333333371"/>
@@ -122,14 +127,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZG-cI-Foq">
-                                <rect key="frame" x="20" y="669" width="353" height="38.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZG-cI-Foq">
+                                <rect key="frame" x="20" y="669" width="353" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqE-3B-zMY">
-                                <rect key="frame" x="20" y="727.33333333333337" width="353" height="26.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqE-3B-zMY">
+                                <rect key="frame" x="20" y="689" width="353" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -154,7 +159,8 @@
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qaj-Ki-foI">
-                                <rect key="frame" x="20" y="773.66666666666663" width="263" height="20"/>
+                                <rect key="frame" x="20" y="709" width="263" height="20"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="TvK-xm-QQy"/>
                                 </constraints>
@@ -217,7 +223,19 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="BottomView" destination="lsX-3M-SuK" id="ool-tt-Ahi"/>
+                        <outlet property="ImperialBtn" destination="gX8-MU-7la" id="sr6-v1-gz8"/>
+                        <outlet property="ageInput" destination="MMa-5M-qit" id="Jst-f7-ckd"/>
+                        <outlet property="bmiMessage" destination="PZG-cI-Foq" id="Xjm-oB-Gxh"/>
+                        <outlet property="bmiValue" destination="nqE-3B-zMY" id="SMk-NH-Wcc"/>
+                        <outlet property="genderInput" destination="vzG-E1-D7N" id="ceL-cV-I9Z"/>
+                        <outlet property="heightInput" destination="roP-Ka-9lo" id="0gs-VB-ntk"/>
                         <outlet property="historyBtn" destination="VBo-L1-PGa" id="fch-yq-7jy"/>
+                        <outlet property="metricBtn" destination="Vnj-9f-0ZG" id="Igb-NR-Xmx"/>
+                        <outlet property="nameInput" destination="lsX-3M-SuK" id="Zzs-0E-1fh"/>
+                        <outlet property="pregressBar" destination="qaj-Ki-foI" id="hSv-f9-o5g"/>
+                        <outlet property="submitBtn" destination="xcU-ck-GAW" id="wCB-wU-1cw"/>
+                        <outlet property="weightInput" destination="Cy8-dm-jue" id="JhF-LB-DSR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
