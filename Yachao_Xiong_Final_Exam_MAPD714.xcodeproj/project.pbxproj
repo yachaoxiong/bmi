@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F99D029294AB9C100872A60 /* BMITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F99D028294AB9C100872A60 /* BMITableViewCell.swift */; };
 		8F9D34A72943F7F500DA17D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D34A62943F7F500DA17D8 /* AppDelegate.swift */; };
 		8F9D34A92943F7F500DA17D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D34A82943F7F500DA17D8 /* SceneDelegate.swift */; };
 		8F9D34AB2943F7F500DA17D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D34AA2943F7F500DA17D8 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F99D028294AB9C100872A60 /* BMITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMITableViewCell.swift; sourceTree = "<group>"; };
 		8F9D34A32943F7F500DA17D8 /* Yachao_Xiong_Final_Exam_MAPD714.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yachao_Xiong_Final_Exam_MAPD714.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F9D34A62943F7F500DA17D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F9D34A82943F7F500DA17D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				8F9D34A82943F7F500DA17D8 /* SceneDelegate.swift */,
 				8F9D34AA2943F7F500DA17D8 /* ViewController.swift */,
 				8F9D34BA294A9B0A00DA17D8 /* ListController.swift */,
+				8F99D028294AB9C100872A60 /* BMITableViewCell.swift */,
 				8F9D34AC2943F7F500DA17D8 /* Main.storyboard */,
 				8F9D34AF2943F7F600DA17D8 /* Assets.xcassets */,
 				8F9D34B12943F7F600DA17D8 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F99D029294AB9C100872A60 /* BMITableViewCell.swift in Sources */,
 				8F9D34AB2943F7F500DA17D8 /* ViewController.swift in Sources */,
 				8F9D34A72943F7F500DA17D8 /* AppDelegate.swift in Sources */,
 				8F9D34A92943F7F500DA17D8 /* SceneDelegate.swift in Sources */,

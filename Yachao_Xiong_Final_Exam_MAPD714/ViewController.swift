@@ -17,6 +17,11 @@ class ViewController: UIViewController {
         historyBtn.layer.masksToBounds = true
     }
 
-
+    @IBAction func ListBtn_pressed(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "ListScreen") as! ListController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc,animated: true)
+    }
+    
 }
 
