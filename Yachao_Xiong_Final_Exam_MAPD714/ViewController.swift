@@ -10,8 +10,10 @@ import UIKit
 class ViewController: UIViewController {
     
     var bmiUnit = "metric"
+
+    @IBOutlet weak var backToList: UIButton!
     @IBOutlet weak var metricBtn: UIButton!
-    @IBOutlet weak var historyBtn: UIButton!
+    @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var ImperialBtn: UIButton!
     @IBOutlet weak var BottomView: UIView!
     @IBOutlet weak var nameInput: UITextField!
@@ -26,25 +28,96 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        historyBtn.layer.cornerRadius = historyBtn.frame.width / 2
-        historyBtn.layer.masksToBounds = true
+        doneBtn.layer.cornerRadius = doneBtn.frame.width / 2
+        doneBtn.layer.masksToBounds = true
+        backToList.layer.cornerRadius = backToList.frame.width / 2
+        backToList.layer.masksToBounds = true
         metricBtn.backgroundColor = .systemGreen
         metricBtn.tintColor = .systemGreen
         ImperialBtn.backgroundColor = .white
         ImperialBtn.tintColor  = .white
-        
         pregressBar.tintColor = .systemRed
         pregressBar.progress = 0
+        heightInput.placeholder
+         = "Enter height(cm)"
+        weightInput.placeholder = "Enter weight(kg)"
+        initMain()
     }
-
-    @IBAction func ListBtn_pressed(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "ListScreen") as! ListController
-        vc.modalPresentationStyle = .fullScreen
-        present(vc,animated: true)
+    
+    func initMain(){
+        let userInfo =  UserDefaults.standard.object(forKey: "userInfo") as? [String:String] ?? [:]
+        var arr =  UserDefaults.standard.object(forKey: "BMIList") as? [[String:String]] ?? [[String:String]]()
+        backToList.isHidden =  true
+        if(arr.count > 0){
+            nameInput.text = userInfo["name"]
+            ageInput.text = userInfo["age"]
+            genderInput.text = userInfo["gender"]
+            backToList.isHidden = false
+        }
+    }
+    @IBAction func backToList_pressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func done_pressed(_ sender: Any) {
+        var arr =  UserDefaults.standard.object(forKey: "BMIList") as? [[String:String]] ?? [[String:String]]()
+            
+       if((weightInput.text == "") || (heightInput.text == "") || (ageInput.text == "") || (nameInput.text == "") || (genderInput.text == "")) {
+                    let alert = UIAlertController(title: "Warning", message: "Please fill in all information", preferredStyle: UIAlertController.Style.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default,handler: {
+                        _ in
+                    }))
+                    
+                    present(alert,animated: true,completion: nil)
+                }else{
+                    let currentWeight = Double(weightInput.text!)
+                    let currentHeight = Double(heightInput.text!)
+                    let currentAge = Double(ageInput.text!)
+                    let currentName = nameInput.text!
+                    let currentGender =  genderInput.text!
+                    var currentBMIValue = round(calculateBMI(currentHeight!, currentWeight!))
+                    print(currentBMIValue)
+                    let currentBMIMessage = bmiMessage(currentBMIValue)
+                    
+                    let currentDate =  Date()
+                    var userInfo = [String:String]()
+                    var dict = [String:String]()
+                    userInfo["name"] = currentName
+                    userInfo["age"] = String(currentAge!)
+                    userInfo["gender"] = currentGender
+                    
+                    
+                    dict["weight"] = String(currentWeight!)
+                    dict["height"] = String(currentHeight!)
+                    dict["bmiValue"] = String(currentBMIValue)
+                    dict["bmiMessage"] = currentBMIMessage
+                    dict["bmiUnit"] = bmiUnit
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    dict["date"] = dateFormatter.string(from: currentDate)
+                    arr.append(dict)
+                    UserDefaults.standard.set(arr,forKey:"BMIList")
+                    UserDefaults.standard.set(userInfo,forKey:"userInfo")
+                    
+                    let vc = storyboard?.instantiateViewController(identifier: "ListScreen") as! ListController
+                    vc.modalPresentationStyle = .fullScreen
+                    present(vc,animated: true)
+                }
     }
     // calculate the bmi value and store it using user
     @IBAction func submit_pressed(_ sender: Any) {
-        var arr =  UserDefaults.standard.object(forKey: "BMIList") as? [[String:String]] ?? [[String:String]]()
+        
+        if((weightInput.text == "") || (heightInput.text == "") || (ageInput.text == "") || (nameInput.text == "") || (genderInput.text == "")) {
+            let alert = UIAlertController(title: "Warning", message: "Please fill in all information", preferredStyle: UIAlertController.Style.alert)
+
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default,handler: {
+                _ in
+            }))
+
+            present(alert,animated: true,completion: nil)
+        }else{
+            
+      
         let currentWeight = Double(weightInput.text!)
         let currentHeight = Double(heightInput.text!)
         let currentAge = Double(ageInput.text!)
@@ -54,24 +127,16 @@ class ViewController: UIViewController {
         print(currentBMIValue)
         let currentBMIMessage = bmiMessage(currentBMIValue)
         
+        
+        
         bmiValue.text =  String(currentBMIValue)
         bmiMessage.text = currentBMIMessage
+            
         
-        var dict = [String:String]()
-        dict["name"] = currentName
-        dict["age"] = String(currentAge!)
-        dict["weight"] = String(currentWeight!)
-        dict["height"] = String(currentHeight!)
-        dict["gender"] = currentGender
-        dict["bmiValue"] = String(currentBMIValue)
-        dict["bmiMessage"] = currentBMIMessage
-        arr.append(dict)
-        UserDefaults.standard.set(arr,forKey:"BMIList")
+        }
     }
     @IBAction func bmiUnit_toggle(_ sender: UIButton) {
-        print("pressed")
-        sender.backgroundColor = .white
-        sender.tintColor = .white
+
         if(sender.tag == 0){
             print("metric btn")
             bmiUnit = "metric"
@@ -79,6 +144,10 @@ class ViewController: UIViewController {
             metricBtn.tintColor = .systemGreen
             ImperialBtn.backgroundColor = .white
             ImperialBtn.tintColor  = .white
+            
+            heightInput.placeholder
+             = "Enter height(cm)"
+            weightInput.placeholder = "Enter weight(kg)"
         }else{
             print("imperial btn")
             bmiUnit = "imperial"
@@ -86,7 +155,11 @@ class ViewController: UIViewController {
             metricBtn.tintColor  = .white
             ImperialBtn.tintColor = .systemGreen
             ImperialBtn.backgroundColor = .systemGreen
-         
+            
+            heightInput.placeholder
+             = "Enter height(Inches)"
+            weightInput.placeholder = "Enter weight(Pounds)"
+
         }
         
     }
@@ -99,6 +172,7 @@ class ViewController: UIViewController {
         genderInput.text = ""
         bmiValue.text = ""
         bmiMessage.text = ""
+        pregressBar.progress = 0
     }
     
     func calculateBMI( _ height: Double, _ weight:  Double )->Double{
@@ -109,7 +183,6 @@ class ViewController: UIViewController {
         }
       
     }
-    
     func bmiMessage(_ bmi:Double) -> String {
         if(bmi < 16){
             pregressBar.tintColor = .systemRed
