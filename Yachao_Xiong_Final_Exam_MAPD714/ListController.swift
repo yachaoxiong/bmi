@@ -2,7 +2,23 @@
 //  ListController.swift
 //  Yachao_Xiong_Final_Exam_MAPD714
 //
-//  Created by Yachao on 2022-12-14.
+//  App Name: BMI
+//  Course : MAPD714
+//  Author : Yachao Xiong 301298033
+//
+//
+//  App Revision History
+//  V1.0 add first screen ui                            -  2022-12-15
+//  V1.1 update ui                                      -  2022-12-15
+//  V1.2 added first screen functions                   -  2022-12-15
+//  V1.3 added first screen functions                   -  2022-12-15
+//  V1.4 added list and edit screens and functions      -  2022-12-15
+//
+//  About the App
+//  This app is to calculate and track BMI
+//
+//  Created by Yachao on 2022-12-15
+//
 //
 
 import UIKit
@@ -58,8 +74,12 @@ class ListController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let list =  bmiList[indexPath.row]
         let cell =  listTable.dequeueReusableCell(withIdentifier: "cell",for:indexPath) as? BMITableViewCell
-        
-        cell?.weight.text = list["weight"]
+        if(list["bmiUnit"] == "metric"){
+            cell?.weight.text = String((list["weight"]!) + "Kg")
+        }else{
+            cell?.weight.text = String((list["weight"]!) + "Ibs")
+        }
+      
         cell?.bmi.text = list["bmiValue"]
         cell?.date.text = list["date"]
         return cell!
