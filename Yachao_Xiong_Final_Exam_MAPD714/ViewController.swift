@@ -115,7 +115,7 @@ class ViewController: UIViewController {
                     dict["bmiMessage"] = currentBMIMessage
                     dict["bmiUnit"] = bmiUnit
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                     dict["date"] = dateFormatter.string(from: currentDate)
                     arr.append(dict)
                     UserDefaults.standard.set(arr,forKey:"BMIList")

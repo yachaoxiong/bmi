@@ -26,6 +26,7 @@ import UIKit
 class ActionViewController: UIViewController {
     var bmiUnit = "metric"
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var bmiDate: UIDatePicker!
     @IBOutlet weak var bmiValue: UILabel!
     @IBOutlet weak var bmiMessage: UILabel!
     @IBOutlet weak var ImperialBtn: UIButton!
@@ -40,6 +41,7 @@ class ActionViewController: UIViewController {
     }
     func initActionView(){
         if(self.navigationItem.title == "add"){
+            screenTitle.text = "Add New BMI"
             metricBtn.backgroundColor = .systemGreen
             metricBtn.tintColor = .systemGreen
             ImperialBtn.backgroundColor = .white
@@ -47,6 +49,7 @@ class ActionViewController: UIViewController {
             heightInput.placeholder = "Enter height(cm)"
             weightInput.placeholder = "Enter weight(kg)"
         }else{
+            screenTitle.text = "Update Your BMI"
             var arr =  UserDefaults.standard.object(forKey: "BMIList") as? [[String:String]] ?? [[String:String]]()
             
             if(arr[selectedOne]["bmiUnit"] == "metric"){
@@ -62,6 +65,12 @@ class ActionViewController: UIViewController {
                 ImperialBtn.backgroundColor = .systemGreen
                 ImperialBtn.tintColor  = .systemGreen
             }
+            
+            let dateFormatter = DateFormatter()
+            print(arr[selectedOne]["date"])
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            let newDate = dateFormatter.date(from: arr[selectedOne]["date"] ?? "")
+            bmiDate.date = newDate!
             
             weightInput.text = arr[selectedOne]["weight"]
             heightInput.text = arr[selectedOne]["height"]
@@ -155,18 +164,19 @@ class ActionViewController: UIViewController {
         
         bmiValue.text =  String(currentBMIValue)
         bmiMessage.text = currentBMIMessage
-        let currentDate =  Date()
+        let currentDate =  bmiDate.date
         var dict = [String:String]()
 
         if(self.navigationItem.title == "add"){
+            
             dict["weight"] = String(currentWeight!)
             dict["height"] = String(currentHeight!)
             dict["bmiValue"] = String(currentBMIValue)
             dict["bmiMessage"] = currentBMIMessage
             dict["bmiUnit"] = bmiUnit
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            dict["date"] = dateFormatter.string(from: currentDate)
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dict["date"] = dateFormatter.string(from: bmiDate.date)
             arr.append(dict)
         }else{
             arr[selectedOne]["weight"] = String(currentWeight!)
@@ -175,8 +185,8 @@ class ActionViewController: UIViewController {
             arr[selectedOne]["bmiMessage"] = currentBMIMessage
             arr[selectedOne]["bmiUnit"] = bmiUnit
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            arr[selectedOne]["date"] = dateFormatter.string(from: currentDate)
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            arr[selectedOne]["date"] = dateFormatter.string(from: bmiDate.date)
         }
         UserDefaults.standard.set(arr,forKey:"BMIList")
         goBack()
